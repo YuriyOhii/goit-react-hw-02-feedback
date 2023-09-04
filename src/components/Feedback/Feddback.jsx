@@ -8,6 +8,8 @@ import {
   StatBox,
   StatItem,
   Tablo,
+  TotalText,
+  TotalVal,
 } from './Feedback.styled';
 
 export class Feedback extends Component {
@@ -23,6 +25,16 @@ export class Feedback extends Component {
       ...prevState,
       [btnName]: prevState[btnName] + 1,
     }));
+  };
+
+  countTotalFeedback = () => {
+    const total = Object.values(this.state);
+    return total.reduce((acc, el) => el + acc, 0);
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state;
+    return Math.floor((100 * good) / this.countTotalFeedback());
   };
 
   render() {
@@ -66,6 +78,18 @@ export class Feedback extends Component {
             <Tablo> {bad}</Tablo>
           </StatItem>
         </StatBox>
+        <TotalText>
+          Total feedbacks: <TotalVal>{this.countTotalFeedback()}</TotalVal>
+        </TotalText>
+        <TotalText>
+          Positive Feedbacks:{' '}
+          <TotalVal>
+            {this.countTotalFeedback()
+              ? this.countPositiveFeedbackPercentage()
+              : 0}{' '}
+            %
+          </TotalVal>
+        </TotalText>
       </FeedbackSection>
     );
   }

@@ -77,11 +77,21 @@ export const Tablo = styled.span`
 
   font-weight: 700;
   font-size: 30px;
-  line-height: 2.5;
+  line-height: 2, 5;
   text-align: center;
   border: none;
   border-radius: 4px;
 
   background-color: blue;
   color: #fff;
+`;
+
+export const TotalText = styled.p`
+  margin: 10px 0 10px 20px;
+  font-size: 20px;
+  color: #212121;
+`;
+
+export const TotalVal = styled.span`
+  color: red;
 `;
